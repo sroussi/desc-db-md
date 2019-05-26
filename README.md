@@ -2,6 +2,11 @@
 
 A tool that turns database description to markdown
 
+install:
+```
+pip install git+https://github.com/sroussi/desc-db-md
+```
+
 example usages:
 
 Single table:
