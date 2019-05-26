@@ -14,7 +14,7 @@ class GlueAthenaTable(Table):
         self.show_partition = True
         self.show_pkey = False
 
-        self.description = descriptor['Description']
+        self.description = descriptor.get('Description', '')
         self.columns = \
             [GlueAthenaColumn(column_desc) for column_desc in descriptor['StorageDescriptor']['Columns']] + \
             [GlueAthenaColumn(column_desc) for column_desc in descriptor.get('PartitionKeys',[])]
@@ -112,7 +112,8 @@ class GlueDriver(driver.Driver):
         return None
 
     def _tablecls(self, desc):
-        if 'Parameters' in desc and desc['Parameters']['classification'] == 'redshift':
+        if 'Parameters' in desc and 'classification' in desc['Parameters'] \
+                and desc['Parameters']['classification'] == 'redshift':
             return GlueRedshiftTable
         return GlueAthenaTable
 
