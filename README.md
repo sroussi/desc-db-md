@@ -1,6 +1,6 @@
 # desc-db-md
 
-A tool that turns database description to markdown
+A tool that turns database description to markdown. Supports python3 only
 
 install:
 ```
